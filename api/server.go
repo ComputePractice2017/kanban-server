@@ -1,11 +1,17 @@
 package api
 
-import "log"
-import "net/http"
+import (
+	"log"
+	"net/http"
+
+	"github.com/gorilla/mux"
+)
 
 // Run starting the server//
 func Run() {
-	log.Println("start server in port 1000....")
-	http.ListenAndServe(":1000", nil)
+	r := mux.NewRouter()
+	r.HandleFunc("/", helloworldHandler).Methods("GET")
+	log.Println("start server in port 8000....")
+	http.ListenAndServe(":8000", r)
 
 }
