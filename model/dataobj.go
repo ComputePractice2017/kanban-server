@@ -61,7 +61,7 @@ func NewPerson(i Issue) (Issue, error) {
 
 
 
-	p.ID = UUID
+	i.ID = UUID
 
 
 

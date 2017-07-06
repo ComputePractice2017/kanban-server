@@ -21,9 +21,11 @@ func Run() {
 	r := mux.NewRouter()
 	r.HandleFunc("/", helloworldHandler).Methods("GET")
 	r.HandleFunc("/issues", getAllIssuesHandler).Methods("GET")
+	r.HandleFunc("/issues", newIssuesHandler).Methods("POST")
+
 
 	http.ListenAndServe(":8000", r)
-	db.CreateDBIfNotExist()
-	db.CreateTableIfNotExistStage()
-	db.CreateTableIfNotExistIssue()
+//	db.CreateDBIfNotExist()
+//	db.CreateTableIfNotExistStage()
+//	db.CreateTableIfNotExistIssue()
 }
