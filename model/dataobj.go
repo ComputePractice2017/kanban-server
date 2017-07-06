@@ -37,3 +37,44 @@ func GetIssues() ([]Issue, error) {
 	return response,nil
 
 }
+func NewPerson(i Issue) (Issue, error) {
+
+	res, err := r.UUID().Run(session)
+
+	if err != nil {
+
+		return i, err
+
+	}
+
+
+
+	var UUID string
+
+	err = res.One(&UUID)
+
+	if err != nil {
+
+		return i, err
+
+	}
+
+
+
+	p.ID = UUID
+
+
+
+	res, err = r.DB("kanban").Table("issues").Insert(i).Run(session)
+
+	if err != nil {
+
+		return i, err
+
+	}
+
+
+
+	return i, nil
+
+}
